@@ -2,12 +2,25 @@ window.addEventListener("load", function(event){
 
     "use strict";
 
+    var keyDownUp = function(event){
+        controller.keyDownUp(event.type, event.keyCode);
+    };
+    
+    var resize = function(event){
+        display.resize(document.documentElement.clientWidth - 32, document.documentElement.clientHeight - 32, game.world.height / game.world.width);
+        display.render();
+    };
+
     var render = function(){
-        display.renderColor(game.color);
+        display.fill(game.world.background_color);
+        display.drawRectangle(game.world.player.x, game.world.player.y, game.world.player.width, game.world.player.height, game.world.player.color);
         display.render();
     };
 
     var update = function () {
+        if (controller.left.active)  { game.world.player.moveLeft();  }
+        if (controller.right.active) { game.world.player.moveRight(); }
+        if (controller.up.active)    { game.world.player.jump(); controller.up.active = false; }
         game.update();
     };
 
@@ -16,15 +29,17 @@ window.addEventListener("load", function(event){
     /*The display handles window resizing, as well as the on screen*/
     var display = new Display(document.querySelector("canvas"));
     /*The game contains game logic*/
-    var game = new Gamepad();
+    var game = new Game();
     /*Within the engine, all other components interact*/
     var engine = new Engine(1000/30, render, update);
 
+    display.buffer.canvas.height = game.world.height;
+    display.buffer.canvas.width = game.world.width;
 
-    window.addEventListener("resize", display.handleResize);
-    window.addEventListener("keydown", controller.handleKeyDownUp);
-    window.addEventListener("keyup", controller.handleKeyDownUp);
+    window.addEventListener("resize", resize);
+    window.addEventListener("keydown", keyDownUp);
+    window.addEventListener("keyup", keyDownUp);
 
-    display.resize();
+    resize();
     engine.start();
 });
