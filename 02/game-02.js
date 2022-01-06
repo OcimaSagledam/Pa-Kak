@@ -5,7 +5,7 @@ const Game = function() {
     friction:0.9,
     gravity:3,
 
-    play:new Game.Player(),
+    player:new Game.Player(),
 
     height:72,
     width:128,
