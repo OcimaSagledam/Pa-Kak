@@ -20,7 +20,7 @@ Controller.prototype = {
 };
 
 Controller.ButtonInput = function(){
-    this.active = this.down = fasle;
+    this.active = this.down = false;
 };
 
 Controller.ButtonInput.prototype = {
