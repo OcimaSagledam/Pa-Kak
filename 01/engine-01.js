@@ -5,10 +5,10 @@ const Engine = function (time_step, update, render){
     this.time = undefined, //The most recent timestamp of loop execution
     this.time_step = time_step, //1000/30 = 30 frames per second
 
-    this.update = false;
+    this.did_the_game_update = false; //Whether or not the update function has been called since the last cycle
 
-    this.update = update;
-    this.render = render;
+    this.update = update; //the update function
+    this.render = render; //the render function
 
     this.run = function(time_stamp){ //This is once cycle of the game loop
         this.accumulated_time += time_stamp - this.time;
@@ -21,10 +21,11 @@ const Engine = function (time_step, update, render){
         while(this.accumulated_time >= this.time_step){
             this.accumulated_time -= this.time_step;
             this.update(time_stamp);
-            this.update=true;
-        }    
-        if(this.update){
-            this.update=false;
+            this.did_the_game_update =true; //If the game has updated, we need to draw it again
+        } 
+        //This allows us to only draw when the game has updated   
+        if(this.did_the_game_update){
+            this.did_the_game_update=false;
             this.render(time_stamp);
         }
         this.animation_frame_request = window.requestAnimationFrame(this.handleRun);

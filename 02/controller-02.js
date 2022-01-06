@@ -1,5 +1,4 @@
 const Controller = function(){
-    //this.down = new Controller.ButtonInput();
     this.left = new Controller.ButtonInput();
     this.up = new Controller.ButtonInput();
     this.right = new Controller.ButtonInput();
@@ -11,8 +10,7 @@ const Controller = function(){
         switch(key_code){
             case 37: this.left.getInput(down); break;
             case 38: this.up.getInput(down); break;
-            case 39: this.right.getInput(down); //break;
-            //case 40: this.down.getInput(down); break;
+            case 39: this.right.getInput(down);
         }
     };
 };
