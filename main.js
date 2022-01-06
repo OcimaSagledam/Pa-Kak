@@ -1,3 +1,6 @@
+/* Since I am loading my scripts dynamically from the pa-kak.html, I am wrapping
+my main JavaScript file in a load listener. This ensures that this code will not
+execute until the document has finished loading and I have access to all of my classes. */
 window.addEventListener("load", function(event) {
 
     "use strict";
