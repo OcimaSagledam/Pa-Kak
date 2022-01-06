@@ -7,8 +7,8 @@ const Engine = function (time_step, update, render){
 
     this.did_the_game_update = false; //Whether or not the update function has been called since the last cycle
 
-    this.update = update; //the update function
-    this.render = render; //the render function
+    this.update_function = update; //the update function
+    this.render_function = render; //the render function
 
     this.run = function(time_stamp){ //This is once cycle of the game loop
         this.accumulated_time += time_stamp - this.time;
@@ -20,13 +20,13 @@ const Engine = function (time_step, update, render){
 
         while(this.accumulated_time >= this.time_step){
             this.accumulated_time -= this.time_step;
-            this.update(time_stamp);
+            this.update_function(time_stamp);
             this.did_the_game_update =true; //If the game has updated, we need to draw it again
         } 
         //This allows us to only draw when the game has updated   
         if(this.did_the_game_update){
             this.did_the_game_update=false;
-            this.render(time_stamp);
+            this.render_function(time_stamp);
         }
         this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
     };
