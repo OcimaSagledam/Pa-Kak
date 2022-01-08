@@ -6,13 +6,9 @@ const Game = function() {
     gravity:3,
 
     player:new Game.Player(),
-
-    /*height:72,
+    
+    height:72,
     width:128,
-    This is the height and width in tutorial
-    */
-    height:720,
-    width:1280,
 
     collideObject:function(object){
       if (object.x < 0) { object.x = 0; object.velocity_x = 0; }
@@ -48,10 +44,6 @@ Game.Player = function(x,y){
   this.velocity_y = 0;
   this.height     = 16;
   this.width      = 16;
-  /*this.height     = 16;
-  this.width      = 16;
-  This is the height and width in the tutorial
-  */
   this.x          = 100;
   this.y          = 50;
 };

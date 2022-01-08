@@ -7,16 +7,16 @@ body {
   align-content:center;
   align-items:space-around;
   background-color:#202830;
-  display:grid;
+  /* display:grid; */
+  display:flex;
   justify-items:center;
+  align-items:center;
   height:100%;
   width:100%;
 
 }
 
-/* 04/07/2018 */
-
-canvas { image-rendering:pixelated; }
+canvas { image-rendering:pixelated;} 
 
 #menu {
 
