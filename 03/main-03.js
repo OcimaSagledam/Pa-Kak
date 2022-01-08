@@ -54,7 +54,7 @@ window.addEventListener("load", function(event) {
   
     }, { once:true });
   
-    display.tile_sheet.image.src = "Tiles.png";
+    display.tile_sheet.image.src = "Sprites/Tiles.png";
   
     window.addEventListener("keydown", keyDownUp);
     window.addEventListener("keyup",   keyDownUp);
