@@ -1,3 +1,9 @@
+/* I changed a few small things since part 3. First, I got rid of my tile value
+offset when drawing tiles from the game object's map. Each value used to be offset
+by 1 due to the export format of my tile map editor. I also changed the rounding
+method in the drawPlayer function from Math.floor to Math.round to better represent
+where the player is actually standing. */
+
 const Display = function(canvas) {
 
   this.buffer  = document.createElement("canvas").getContext("2d"),
@@ -10,7 +16,7 @@ const Display = function(canvas) {
 
     for (let index = map.length - 1; index > -1; -- index) {
 
-      let value = map[index];
+      let value = map[index]; // No longer subtracting 1. The values in my tile map have been shifted down by 1.
       let source_x =           (value % this.tile_sheet.columns) * this.tile_sheet.tile_size;
       let source_y = Math.floor(value / this.tile_sheet.columns) * this.tile_sheet.tile_size;
       let destination_x =           (index % columns) * this.tile_sheet.tile_size;
@@ -25,9 +31,9 @@ const Display = function(canvas) {
   this.drawPlayer = function(rectangle, color1, color2) {
 
     this.buffer.fillStyle = color1;
-    this.buffer.fillRect(Math.floor(rectangle.x), Math.floor(rectangle.y), rectangle.width, rectangle.height);
+    this.buffer.fillRect(Math.round(rectangle.x), Math.round(rectangle.y), rectangle.width, rectangle.height);
     this.buffer.fillStyle = color2;
-    this.buffer.fillRect(Math.floor(rectangle.x + 2), Math.floor(rectangle.y + 2), rectangle.width - 4, rectangle.height - 4);
+    this.buffer.fillRect(Math.round(rectangle.x + 2), Math.round(rectangle.y + 2), rectangle.width - 4, rectangle.height - 4);
 
   };
 
